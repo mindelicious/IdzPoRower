@@ -1,0 +1,17 @@
+/* 
+  Localizable.strings
+  IdzPoRower
+
+  Created by Mateusz Danieluk on 13/11/2020.
+  
+*/
+
+"location_disabled_title" = "App works better with LocationService on.";
+"location_disabled_message" = "Go to Settings -> Privacy -> Location Services -> Idz po rower and turn on location service.";
+"somethings_goes_wrong" = "Something goes wrong try again";
+"ok" = "Ok";
+
+"distance" = "%@m";
+"available_bikes" = "Available bikes";
+"available_places" = "Available places";
+"no_data" = "No data";

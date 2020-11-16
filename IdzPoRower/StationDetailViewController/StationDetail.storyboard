@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Station Detail View Controller-->
+        <scene sceneID="OCo-uy-1jw">
+            <objects>
+                <viewController storyboardIdentifier="StationDetail" id="Op5-ux-dEg" customClass="StationDetailViewController" customModule="IdzPoRower" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="SZ1-4H-4DP">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="kb2-CM-DWp">
+                                <rect key="frame" x="0.0" y="44" width="414" height="518"/>
+                            </mapView>
+                            <view contentMode="scaleToFill" verticalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="cIY-05-2ZK" userLabel="Station View">
+                                <rect key="frame" x="0.0" y="562" width="414" height="300"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eR6-FI-z7K" customClass="BikeStationView" customModule="IdzPoRower" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="300"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="eR6-FI-z7K" secondAttribute="bottom" id="RC8-b7-PMF"/>
+                                    <constraint firstAttribute="height" constant="300" id="Vcu-4o-cTB"/>
+                                    <constraint firstItem="eR6-FI-z7K" firstAttribute="top" secondItem="cIY-05-2ZK" secondAttribute="top" id="gdM-kp-tAa"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="CeE-ef-wgf"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="eR6-FI-z7K" firstAttribute="leading" secondItem="kb2-CM-DWp" secondAttribute="leading" id="2bE-ag-8J8"/>
+                            <constraint firstAttribute="trailing" secondItem="kb2-CM-DWp" secondAttribute="trailing" id="3el-Sc-xCZ"/>
+                            <constraint firstItem="kb2-CM-DWp" firstAttribute="leading" secondItem="SZ1-4H-4DP" secondAttribute="leading" id="NAK-Hh-8Fu"/>
+                            <constraint firstItem="cIY-05-2ZK" firstAttribute="leading" secondItem="CeE-ef-wgf" secondAttribute="leading" id="NSV-S6-1vz"/>
+                            <constraint firstItem="cIY-05-2ZK" firstAttribute="top" secondItem="kb2-CM-DWp" secondAttribute="bottom" id="Ok4-JE-zgd"/>
+                            <constraint firstItem="kb2-CM-DWp" firstAttribute="top" secondItem="CeE-ef-wgf" secondAttribute="top" id="YBf-ML-HV0"/>
+                            <constraint firstItem="eR6-FI-z7K" firstAttribute="trailing" secondItem="kb2-CM-DWp" secondAttribute="trailing" id="bfS-sU-usi"/>
+                            <constraint firstItem="CeE-ef-wgf" firstAttribute="bottom" secondItem="cIY-05-2ZK" secondAttribute="bottom" id="erc-3z-Sem"/>
+                            <constraint firstItem="CeE-ef-wgf" firstAttribute="trailing" secondItem="cIY-05-2ZK" secondAttribute="trailing" id="ql8-Vd-fWL"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="bikeStationView" destination="eR6-FI-z7K" id="9lL-70-l8v"/>
+                        <outlet property="mapView" destination="kb2-CM-DWp" id="yx7-mG-exa"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="s4s-BM-K13" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="134.78260869565219" y="-106.47321428571428"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
