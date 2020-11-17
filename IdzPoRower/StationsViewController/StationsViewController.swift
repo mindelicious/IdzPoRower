@@ -18,20 +18,18 @@ class StationsViewController: UIViewController {
     var activityView: UIActivityIndicatorView?
     var stationArray: [Feature] = []
     var responseData: [Feature] = []
-    var distance = 0
+    var distance = 0.0
     var currentLocation = CLLocation()
-    var long: Double = 0.0
-    var lat: Double = 0.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        checkLocationServices()
         getStation()
         prepareTableView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        checkLocationServices()
         navigationController?.setNavigationBarHidden(true, animated: animated)
     }
     
@@ -61,18 +59,22 @@ class StationsViewController: UIViewController {
             responseData.forEach { feature in
                 geocode(latitude: feature.geometry.coordinates[1], longitude: feature.geometry.coordinates[0]) { [weak self] placemark, error in
                     DispatchQueue.main.async { [self] in
-                        let stationDistance = CLLocation(latitude: self!.lat, longitude: self!.long)
-                        var stationLoc = feature
                         
+                        let stationDistance = CLLocation(latitude: feature.geometry.coordinates[1], longitude: feature.geometry.coordinates[0])
+                        var stationLoc = feature
+                        var tempDIstance = CLLocation(latitude: 54.408422, longitude: 18.590599)
                         stationLoc.geometry.streetAddress = placemark?.thoroughfare
                         stationLoc.geometry.city = placemark?.locality
                         self?.stationArray.append(stationLoc)
 
-                        let roundedDistance = ((stationDistance.distance(from: self!.currentLocation)) / 1000).rounded()
-                        self?.distance = Int(roundedDistance)
+                        print("🌮", self?.currentLocation)
+                        let roundedDistance = (stationDistance.distance(from: self!.currentLocation)).rounded()
+                        self?.distance = Double(roundedDistance)
+                        print("distace", self?.distance)
                         if self?.stationArray.count == self?.responseData.count {
                             self?.tableView.reloadData()
                         }
+                        
                     }
                 }
             }
@@ -126,13 +128,7 @@ extension StationsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let station = stationArray[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.bikeStation, for: indexPath) as! BikeStationCell
-        let stationDistance = CLLocation(latitude: lat, longitude: long)
-        let roundedDistance = ((stationDistance.distance(from: currentLocation)) / 1000).rounded()
         
-        long = station.geometry.coordinates[0]
-        lat = station.geometry.coordinates[1]
-        distance = Int(roundedDistance)
-  
         cell.showData(station: station.properties,
                       stationStreet: station.geometry.streetAddress,
                       stationCity: station.geometry.city,
@@ -145,11 +141,11 @@ extension StationsViewController: UITableViewDelegate, UITableViewDataSource {
         let station = stationArray[indexPath.row]
         let storyboard = UIStoryboard(name: "StationDetail", bundle: nil)
         let stationDetailViewController = storyboard.instantiateViewController(withIdentifier: Constants.stationDetail) as! StationDetailViewController
-      
+        
         stationDetailViewController.properties = station.properties
         stationDetailViewController.street = station.geometry.streetAddress ?? "no_data".localized()
         stationDetailViewController.city = station.geometry.city ?? ""
-        
+
         stationDetailViewController.lat = station.geometry.coordinates[1]
         stationDetailViewController.lon = station.geometry.coordinates[0]
         stationDetailViewController.distance = distance
@@ -163,6 +159,7 @@ extension StationsViewController: CLLocationManagerDelegate {
     
     func setupLocationManager() {
         locationManager.delegate = self
+        locationManager.startUpdatingLocation()
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
     }
     

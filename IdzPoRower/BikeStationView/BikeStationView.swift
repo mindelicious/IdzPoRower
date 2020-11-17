@@ -44,7 +44,7 @@ final class BikeStationView: UIView {
         self.addSubview(view)
     }
     
-    func configureData(station: Properties, street: String?, city: String?, stationDistance: Int) {
+    func configureData(station: Properties, street: String?, city: String?, stationDistance: Double) {
         availableBikes.text = "available_bikes".localized()
         availablePlaces.text = "available_places".localized()
         stationName.text = station.label

@@ -21,7 +21,7 @@ class StationDetailViewController: UIViewController {
     var city = ""
     var lat: Double = 0.0
     var lon: Double = 0.0
-    var distance = 0
+    var distance = 0.0
     
     
     override func viewDidLoad() {

@@ -11,7 +11,7 @@ class BikeStationCell: UITableViewCell {
     
     @IBOutlet weak var bikeStationView: BikeStationView!
 
-    func showData(station: Properties, stationStreet: String?, stationCity: String?, stationDistance: Int) {
+    func showData(station: Properties, stationStreet: String?, stationCity: String?, stationDistance: Double) {
         bikeStationView.configureData(station: station, street: stationStreet, city: stationCity, stationDistance: stationDistance)
     }
 
