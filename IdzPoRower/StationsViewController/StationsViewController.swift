@@ -23,6 +23,7 @@ class StationsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        locationManager.requestAlwaysAuthorization()
         getStation()
         prepareTableView()
     }
@@ -66,10 +67,11 @@ class StationsViewController: UIViewController {
                         stationLoc.geometry.streetAddress = placemark?.thoroughfare
                         stationLoc.geometry.city = placemark?.locality
                         self?.stationArray.append(stationLoc)
-
-                        let roundedDistance = (stationDistance.distance(from: self!.currentLocation)).rounded()
-                        self?.distance = Double(roundedDistance)
-                        
+                        if let currentLocation = self?.currentLocation {
+                            let roundedDistance = (stationDistance.distance(from: currentLocation)).rounded()
+                            self?.distance = Double(roundedDistance)
+                        }
+                       
                         if self?.stationArray.count == self?.responseData.count {
                             self?.tableView.reloadData()
                         }
