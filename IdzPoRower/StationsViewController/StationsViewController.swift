@@ -62,7 +62,7 @@ class StationsViewController: UIViewController {
                         
                         let stationDistance = CLLocation(latitude: feature.geometry.coordinates[1], longitude: feature.geometry.coordinates[0])
                         var stationLoc = feature
-                        var tempDIstance = CLLocation(latitude: 54.408422, longitude: 18.590599)
+                        
                         stationLoc.geometry.streetAddress = placemark?.thoroughfare
                         stationLoc.geometry.city = placemark?.locality
                         self?.stationArray.append(stationLoc)
