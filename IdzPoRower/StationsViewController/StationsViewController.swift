@@ -67,10 +67,9 @@ class StationsViewController: UIViewController {
                         stationLoc.geometry.city = placemark?.locality
                         self?.stationArray.append(stationLoc)
 
-                        print("🌮", self?.currentLocation)
                         let roundedDistance = (stationDistance.distance(from: self!.currentLocation)).rounded()
                         self?.distance = Double(roundedDistance)
-                        print("distace", self?.distance)
+                        
                         if self?.stationArray.count == self?.responseData.count {
                             self?.tableView.reloadData()
                         }
